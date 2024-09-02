@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "users",
     'home_page',
+    'data',
 ]
 
 MIDDLEWARE = [

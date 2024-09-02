@@ -3,8 +3,7 @@
 
 {% block content %}
 {% if request.user.is_authenticated %}
-    <!-- TODO: Write First Name not username -->
-    <h1 class="text-center">Hello {{request.user.username}} To Doctors Hub</h1>   
+    <h1 class="text-center">Hello {{request.user.first_name}} To Doctors Hub</h1>   
 
     <div class="container mt-5 w-75">
         <div class="row">
