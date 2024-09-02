@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+    {% csrf_token %}
+    <div class="d-flex justify-content-center align-items-center flex-column">
+        <h1>Hi {{user.first_name}}</h1>
+        <h2>Your username is ({{user.username}}) </h2>
+        <h2>Your first name is ({{user.first_name}}) </h2>
+        <h2>Your last name is ({{user.last_name}}) </h2>
+        <h2>Your email is ({{user.email}}) </h2>
+    </div>
+{% endblock %}

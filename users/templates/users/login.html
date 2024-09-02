@@ -1,0 +1,12 @@
+{% extends 'users/base_form.html' %}
+
+
+{% block validateMessage %}
+    {% if userNotExist %}
+        <h1>User not found!</h1>
+    {% endif %}
+{% endblock %}
+
+{% block buttonName %}
+    Login
+{% endblock %}
