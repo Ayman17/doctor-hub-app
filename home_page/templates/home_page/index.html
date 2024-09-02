@@ -2,5 +2,41 @@
 
 
 {% block content %}
-    <h1>Hello Home!</h1>    
+{% if request.user.is_authenticated %}
+    <!-- TODO: Write First Name not username -->
+    <h1 class="text-center">Hello {{request.user.username}} To Doctors Hub</h1>   
+
+    <div class="container mt-5 w-75">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Specialization</h3>
+                <div class="dropdowns">
+                    <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>Areas</h3>
+                <div class="dropdowns">
+                    <select class="form-select form-select-lg mb-3" aria-label="Large select example">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                </div>
+            </div>
+        </div>
+        <div class="buttonDiv text-center mt-2">
+            <button class="btn btn-outline-success px-4 py-2">Search</button>
+        </div>
+    </div>
+{% else %}
+    <h1 class="text-center">Hello To Doctors Hub Please Login/Signup</h1>
+{% endif %}
+
 {% endblock content %}
