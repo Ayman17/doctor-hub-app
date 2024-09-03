@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Doctors
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 # Create your views here.
 # TODO: add login required for views
@@ -25,3 +26,8 @@ class SearchDoctorsData(ListView):
             queryset = queryset.filter(specialization=specialization)
 
         return queryset.distinct()
+
+class DoctorDetails(DetailView):
+    model = Doctors
+    template_name = 'data/doctor_details.html'
+    context_object_name = 'doctor'
