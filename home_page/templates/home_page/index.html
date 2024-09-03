@@ -31,9 +31,12 @@
             </div>
         </div>
         <div class="buttonDiv text-center mt-2">
-            <button class="btn btn-outline-success px-4 py-2">Search</button>
+            <a href="{% url "searchDoctorsData" %}" class="btn btn-outline-success px-4 py-2">Search</a>
         </div>
     </div>
+    {% if test %}
+        <h1 class="text-center">Hello</h1>
+    {% endif %}
 {% else %}
     <h1 class="text-center">Hello To Doctors Hub Please Login/Signup</h1>
 {% endif %}
