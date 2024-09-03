@@ -11,10 +11,10 @@
                 <h3>Specialization</h3>
                 <div class="dropdowns">
                     <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected>Ex: Dentist</option>
+                        {% for doctor in doctors %}
+                            <option value="{{doctor.specialization}}">{{doctor.specialization}}</option>
+                        {% endfor %}
                       </select>
                 </div>
             </div>
@@ -22,10 +22,10 @@
                 <h3>Areas</h3>
                 <div class="dropdowns">
                     <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option selected>Ex: Giza</option>
+                        {% for doctor in doctors %}
+                            <option value="{{doctor.area}}">{{doctor.area}}</option>
+                        {% endfor %}
                       </select>
                 </div>
             </div>
