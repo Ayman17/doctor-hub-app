@@ -6,37 +6,42 @@
     <h1 class="text-center">Hello {{request.user.first_name}} To Doctors Hub</h1>   
 
     <div class="container mt-5 w-75">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Specialization</h3>
-                <div class="dropdowns">
-                    <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                        <option selected>Ex: Dentist</option>
-                        {% for doctor in doctors %}
-                            <option value="{{doctor.specialization}}">{{doctor.specialization}}</option>
-                        {% endfor %}
-                      </select>
+        <form method="get" action="{% url "searchDoctorsData" %}">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Specialization</h3>
+                    <div class="dropdowns">
+                        <select class="form-select form-select-lg mb-3" name="specialization" aria-label="Large select example">
+                            <option selected value="">Ex: Dentist</option>
+                            {% for doctor in doctors %}
+                                <option value="{{doctor.specialization}}">{{doctor.specialization}}</option>
+                            {% endfor %}
+                          </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3>Areas</h3>
+                    <div class="dropdowns">
+                        <select class="form-select form-select-lg mb-3" name="area" aria-label="Large select example">
+                            <option selected value="">Ex: Giza</option>
+                            {% for doctor in doctors %}
+                                <option value="{{doctor.area}}">{{doctor.area}}</option>
+                            {% endfor %}
+                          </select>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <h3>Areas</h3>
-                <div class="dropdowns">
-                    <select class="form-select form-select-lg mb-3" aria-label="Large select example">
-                        <option selected>Ex: Giza</option>
-                        {% for doctor in doctors %}
-                            <option value="{{doctor.area}}">{{doctor.area}}</option>
-                        {% endfor %}
-                      </select>
-                </div>
+            <div class="buttonDiv text-center mt-2">
+                <!-- <a href="{% url "searchDoctorsData" %}" class="btn btn-outline-success px-4 py-2">Search</a> -->
+                <button type="submit" class="btn btn-outline-success px-4 py-2">Search</button>
             </div>
-        </div>
-        <div class="buttonDiv text-center mt-2">
-            <a href="{% url "searchDoctorsData" %}" class="btn btn-outline-success px-4 py-2">Search</a>
-        </div>
+        </form>
     </div>
-    {% if test %}
-        <h1 class="text-center">Hello</h1>
-    {% endif %}
+
+    {% for doctor in  result_doctors%}
+        <h2> {{doctor.name}} </h2>
+    {% endfor %}
+    
 {% else %}
     <h1 class="text-center">Hello To Doctors Hub Please Login/Signup</h1>
 {% endif %}

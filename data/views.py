@@ -3,20 +3,25 @@ from .models import Doctors
 from django.views.generic.list import ListView
 
 # Create your views here.
-
+# TODO: add login required for views
 class DoctorsData(ListView):
     model = Doctors
     template_name = 'home_page/index.html'
     context_object_name = 'doctors'
 
-# class SearchDoctorsData(ListView):
-#     model = Doctors
-#     template_name = 'home_page/index.html'
-#     context_object_name = 'doctors'
+class SearchDoctorsData(ListView):
+    model = Doctors
+    template_name = 'home_page/index.html'
+    context_object_name = 'result_doctors'
 
-#     def get_queryset(self):
-#         query = self.request.GET.get( )
-#         return Doctors.objects.filter(name__icontains=query)
-    
-def SearchDoctorsData(request):
-    return render(request, 'home_page/index.html', {'test': True})
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        area = self.request.GET.get('area')
+        specialization = self.request.GET.get('specialization')
+
+        if area:
+            queryset = queryset.filter(area=area)
+        if specialization:
+            queryset = queryset.filter(specialization=specialization)
+
+        return queryset.distinct()
