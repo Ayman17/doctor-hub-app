@@ -5,6 +5,7 @@
 {% if request.user.is_authenticated %}
     <h1 class="text-center">Hello {{request.user.first_name}} To Doctors Hub</h1>   
 
+    {% comment %} TODO: when i search i can not search again withou go to home page {% endcomment %}
     <div class="container mt-5 w-75">
         <form method="get" action="{% url "searchDoctorsData" %}">
             <div class="row">
@@ -12,7 +13,7 @@
                     <h3>Specialization</h3>
                     <div class="dropdowns">
                         <select class="form-select form-select-lg mb-3" name="specialization" aria-label="Large select example">
-                            <option selected value="">Ex: Dentist</option>
+                            <option selected value="not">Ex: Dentist</option>
                             {% for doctor in doctors %}
                                 <option value="{{doctor.specialization}}">{{doctor.specialization}}</option>
                             {% endfor %}
@@ -23,7 +24,7 @@
                     <h3>Areas</h3>
                     <div class="dropdowns">
                         <select class="form-select form-select-lg mb-3" name="area" aria-label="Large select example">
-                            <option selected value="">Ex: Giza</option>
+                            <option selected value="not">Ex: Giza</option>
                             {% for doctor in doctors %}
                                 <option value="{{doctor.area}}">{{doctor.area}}</option>
                             {% endfor %}
@@ -38,9 +39,25 @@
         </form>
     </div>
 
-    {% for doctor in  result_doctors%}
-        <h2> {{doctor.name}} </h2>
-    {% endfor %}
+    {% if result_doctors %}
+        <div class="container pt-5">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for doctor in result_doctors %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="..." class="card-img-top" alt="Doctor">
+                            <div class="card-body">
+                                <h5 class="card-title">{{doctor.name}}</h5>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-body-secondary">Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
     
 {% else %}
     <h1 class="text-center">Hello To Doctors Hub Please Login/Signup</h1>
