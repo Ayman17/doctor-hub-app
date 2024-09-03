@@ -13,7 +13,7 @@
                     <h3>Specialization</h3>
                     <div class="dropdowns">
                         <select class="form-select form-select-lg mb-3" name="specialization" aria-label="Large select example">
-                            <option selected value="not">Ex: Dentist</option>
+                            <option selected value="">All</option>
                             {% for doctor in doctors %}
                                 <option value="{{doctor.specialization}}">{{doctor.specialization}}</option>
                             {% endfor %}
@@ -24,7 +24,7 @@
                     <h3>Areas</h3>
                     <div class="dropdowns">
                         <select class="form-select form-select-lg mb-3" name="area" aria-label="Large select example">
-                            <option selected value="not">Ex: Giza</option>
+                            <option selected value="">All</option>
                             {% for doctor in doctors %}
                                 <option value="{{doctor.area}}">{{doctor.area}}</option>
                             {% endfor %}
@@ -33,7 +33,6 @@
                 </div>
             </div>
             <div class="buttonDiv text-center mt-2">
-                <!-- <a href="{% url "searchDoctorsData" %}" class="btn btn-outline-success px-4 py-2">Search</a> -->
                 <button type="submit" class="btn btn-outline-success px-4 py-2">Search</button>
             </div>
         </form>
@@ -41,11 +40,11 @@
 
     {% if result_doctors %}
         <div class="container pt-5">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4 pb-5">
                 {% for doctor in result_doctors %}
                     <div class="col">
                         <div class="card h-100">
-                            <img src="..." class="card-img-top" alt="Doctor">
+                            <img src="{{doctor.image.url}}" class="card-img-top" alt="Doctor">
                             <div class="card-body">
                                 <h5 class="card-title">{{doctor.name}}</h5>
                             </div>

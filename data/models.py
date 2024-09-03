@@ -7,6 +7,7 @@ class Doctors(models.Model):
     address = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
     area = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='doctor_images/', default='media/doctor_images/doctor.jpg')
 
     def __str__(self):
         return self.name
